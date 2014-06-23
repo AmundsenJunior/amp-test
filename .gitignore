@@ -1,0 +1,4 @@
+# Ignore cred_*.php - DB credentials
+cred_int.php
+db_scripts/cred_ext.php
+
