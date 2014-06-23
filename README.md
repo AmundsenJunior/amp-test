@@ -6,19 +6,24 @@ Use the dc_scripts/ files to create the MySQL database and tables within, along 
 .gitignore (This includes the two cred_*.php files used.)
  
 One provides DB credentials to the site, currently listed as cred_int.php in the project root directory, formatted as:
+
+```
 	<?php
 		DEFINE('DB_USERNAME', 'username');
 		DEFINE('DB_PASSWORD', 'password');
 		DEFINE('DB_HOST', 'hostname');
 		DEFINE('DB_DATABASE', 'dbname');
 	?>
+```
 
 The other provides DB credentials to the /db_scripts directory, for making changes to the db itself, similarly formatted as:
+
+```
 	<?php
 		DEFINE('DB_USERNAME', 'username');
 		DEFINE('DB_USERNAME', 'password');
 		DEFINE('DB_HOST', 'hostname:port');
 		DEFINE('DB_DATABASE', 'dbname');
 	?>
-
+```
  
