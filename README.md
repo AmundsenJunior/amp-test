@@ -3,7 +3,8 @@ This project is an *AMP stack-based site, and POC for basic PHP-MySQL form funct
 Use the db_scripts/ files to create the MySQL database and tables within, along with altering table structure. (The alter_table.php file has been used twice already to add new columns to the Apprentices table.)
 
 
-.gitignore (This includes the two cred_*.php files used.)
+### .gitignore
+#### (This includes the two cred_*.php files used.)
  
 One provides DB credentials to the site, currently listed as cred_int.php in the project root directory, formatted as:
 
