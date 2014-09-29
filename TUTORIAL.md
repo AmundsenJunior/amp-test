@@ -8,7 +8,7 @@
  - PHP (including PHPMyAdmin)
  - Git and GitHub
 
-### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub account
+### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub accounts
  - Download VirtualBox and Ubuntu prior to training
 [https://www.virtualbox.org/wiki/Downloads]
 [http://www.ubuntu.com/download/desktop]
@@ -24,16 +24,16 @@
      Under the VirtualBox window options, go to "Devices -> Insert Guest Additions CD image”
      Enter your user password to continue
 
-Ubuntu Linux
+#### Ubuntu Linux
  - popular desktop Linux OS (or server version)
  - Install a 32-bit desktop version if your computer has less than 4GB physical memory
  - Optionally install a lightweight or other desktop environment (default is Unity): [http://askubuntu.com/questions/65083/what-kinds-of-desktop-environments-and-shells-are-available]
 
 
-Oracle VirtualBox
+#### Oracle VirtualBox
  - VM manager 
 
-Terminal
+#### Terminal
  - command line interface
      Go to Applications on the Launcher, and search “terminal”
      Open Terminal, then right-click on the Terminal icon in Launcher and select “Lock to Launcher"
@@ -42,7 +42,7 @@ Terminal
      $ sudo apt-get upgrade
 ```
 
-Linux Directory Tree
+#### Linux Directory Tree
  - directories not folders
 ```
      $ ls -al
@@ -52,23 +52,19 @@ Linux Directory Tree
      $ cat
 ```
 
-GitHub
- - code repository
- - Set up GitHub account prior to training
-
-git
+#### git
  - version control
 ```
       $ sudo apt-get install git
 ```
 
-vim, nano
+#### vim, nano
  - text editors
 ```
      $ sudo apt-get install vim
 ```
 
-Install AMP
+#### Install AMP
 [https://help.ubuntu.com/community/ApacheMySQLPHP]
 ```
      $ sudo apt-get install lamp-server^
@@ -76,13 +72,13 @@ Install AMP
      for why you need to use the caret (^): [http://tech.shantanugoel.com/2010/10/23/apt-get-caret.html]
      "root" for mysql root user's password
 
-Apache
+#### Apache
  - web server
  - http://127.0.0.1 or http://localhost >> It works!
  - apache config in /etc/apache2
  - website directory in /var/www
 
-Apache commands
+##### Apache commands
 ```
      $ sudo service apache2 reload
      $ sudo service apache2 start
@@ -91,7 +87,7 @@ Apache commands
      $ sudo a2ensite 000-default    
 ```
 
-PHP - confirm installation
+#### PHP - confirm installation
 ```
      $ ls /etc/apache2/mods-enabled
 ```
@@ -116,13 +112,13 @@ PHP - confirm installation
 ```
          http://localhost/test.php
 
-MySQL - confirm installation
+#### MySQL - confirm installation
 ```
      $ mysql -u root -p
          Enter root user's password
      > exit;
 ```
-PHPMyAdmin
+#### PHPMyAdmin
 ```
      $ sudo apt-get install phpmyadmin
 ```
@@ -145,12 +141,12 @@ PHPMyAdmin
     
      Secure PHPMyAdmin web access ([https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04])
 
-MySQL Workbench
+#### MySQL Workbench
 ```
      $ sudo apt-get install mysql-workbench
 ```
 
-Build and deploy test site
+#### Build and deploy test site
      [http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www]
      Principle of Least Privilege
          [http://en.wikipedia.org/wiki/Principle_of_least_privilege]
@@ -185,6 +181,6 @@ Build and deploy test site
 ```
      http://localhost
     
-VirtualBox - shutdown
+#### VirtualBox - shutdown
 1. In the VM, initiate OS shutdown
 2. Once completed, on the VM window, do File -> ACPI Shutdown
