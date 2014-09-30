@@ -12,7 +12,7 @@
 #### Ubuntu Linux
  - popular desktop Linux OS (or server version)
  - Install a 32-bit desktop version if your computer has less than 4GB physical memory
- - Optionally install a lightweight or other desktop environment (default is Unity): http://askubuntu.com/questions/65083/what-kinds-of-desktop-environments-and-shells-are-available
+ - After OS installation, optionally install a lightweight or alternative desktop environment (default is Unity): http://askubuntu.com/questions/65083/what-kinds-of-desktop-environments-and-shells-are-available
 
 #### Oracle VirtualBox
  - VM manager 
