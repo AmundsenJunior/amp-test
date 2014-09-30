@@ -1,6 +1,6 @@
 # DevOps for A100 Teams
 
-### LAMP stack
+## LAMP stack
  - Linux (Ubuntu)
  - Apache
  - MySQL (including MySQLWorkbench)
@@ -8,32 +8,34 @@
  - Git and GitHub
 
 ### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub accounts
+
+#### Ubuntu Linux
+ - popular desktop Linux OS (or server version)
+ - Install a 32-bit desktop version if your computer has less than 4GB physical memory
+ - Optionally install a lightweight or other desktop environment (default is Unity): http://askubuntu.com/questions/65083/what-kinds-of-desktop-environments-and-shells-are-available
+
+#### Oracle VirtualBox
+ - VM manager 
+
+#### Install VirtualBox and Ubuntu
 1. Download VirtualBox and Ubuntu prior to training
-   - [https://www.virtualbox.org/wiki/Downloads]
-   - [http://www.ubuntu.com/download/desktop]
+   - https://www.virtualbox.org/wiki/Downloads
+   - http://www.ubuntu.com/download/desktop
 2. Go through full VirtualBox installation on Mac or Windows, accepting all settings, including networking (with temporary interruption of Internet connectivity during installation)
 3. Create New VirtualBox VM, with at least 512 MB memory, and dynamically allocated 8GB disk space, all other options at default
 4. Once created, Start the VM, and select the downloaded ISO Ubuntu disk image for starting installation
 5. Erase disk (this refers to your VirtualBox hardisk that you just created) and install Ubuntu
 6. Accept most settings, create a user name and password, download updates during installation
 7. Upon restart, you may need to select Reset in the VirtualBox window (Under File -> Reset) once the Ubuntu screen reaches "Stopping early crypto disks… [OK]"
-8. Once it’s restarted, find the Software Updater icon on the Launcher bar, and click to be prompted for Restart (this is installing the updates downloaded earlier.)
-9. Install VirtualBox Guest Additions
-   1. Under the VirtualBox window options, go to "Devices -> Insert Guest Additions CD image”
+8. Once it’s restarted, find the Software Updater icon on the Launcher bar, and click through to install updates and restart.
+9. Install VirtualBox Guest Additions (of drivers/applications for running VM on your computer, including video/graphics and filesystem):
+   1. Under the VirtualBox window options, go to "Devices -> Insert Guest Additions CD image"
    2. Enter your user password to continue
-
-#### Ubuntu Linux
- - popular desktop Linux OS (or server version)
- - Install a 32-bit desktop version if your computer has less than 4GB physical memory
- - Optionally install a lightweight or other desktop environment (default is Unity): [http://askubuntu.com/questions/65083/what-kinds-of-desktop-environments-and-shells-are-available]
-
-#### Oracle VirtualBox
- - VM manager 
 
 #### Terminal
  - command line interface
-    Go to Applications on the Launcher, and search “terminal”
-    Open Terminal, then right-click on the Terminal icon in Launcher and select “Lock to Launcher"
+    Go to Applications on the Launcher, and search "terminal'
+    Open Terminal, then right-click on the Terminal icon in Launcher and select "Lock to Launcher"
 ```
     $ sudo apt-get update
     $ sudo apt-get upgrade
@@ -62,13 +64,13 @@
 ```
 
 #### Install AMP
-[https://help.ubuntu.com/community/ApacheMySQLPHP]
+https://help.ubuntu.com/community/ApacheMySQLPHP
 ```
     $ sudo apt-get install lamp-server^
 ```     
 For why you need to use the caret (^): 
-    [http://tech.shantanugoel.com/2010/10/23/apt-get-caret.html]
-    "root" for mysql root user's password
+ - http://tech.shantanugoel.com/2010/10/23/apt-get-caret.html
+ - "root" for mysql root user's password
 
 #### Apache
  - web server
@@ -149,7 +151,7 @@ At bottom of file, enter the following:
 http://localhost/phpmyadmin
  - Enter MySQL root user and password to open interface
     
- - To apply secure PHPMyAdmin web access (Use only if you are hosting on an open web server (not just 'localhost')) ([https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04])
+ - To apply secure PHPMyAdmin web access (**Use only if you are hosting on an open web server (not just 'localhost')**) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
 
 #### MySQL Workbench
 ```
@@ -157,9 +159,9 @@ http://localhost/phpmyadmin
 ```
 
 #### Build and deploy test site
-[http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www]
+http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
 Principle of Least Privilege
- - http://en.wikipedia.org/wiki/Principle_of_least_privilege]
+ - http://en.wikipedia.org/wiki/Principle_of_least_privilege
 
 ```
     $ sudo gpasswd -a $USER www-data
