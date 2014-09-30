@@ -1,12 +1,12 @@
 # LAMP Stack Development Environment Creation
-## (*DevOps for A100 Apprentices*)
+(*DevOps for A100 Apprentices*)
 
-## LAMP stack
+## LAMP stack and tools
  - Linux (Ubuntu)
  - Apache
  - MySQL (including MySQLWorkbench)
  - PHP (including PHPMyAdmin)
- - Git and GitHub
+ - Git, Vim/Nano, Bash/Terminal
 
 ### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub accounts
 
