@@ -1,4 +1,5 @@
-# DevOps for A100 Teams
+# LAMP Stack Development Environment Creation
+## (*DevOps for A100 Apprentices*)
 
 ## LAMP stack
  - Linux (Ubuntu)
@@ -42,13 +43,13 @@
 ```
 
 #### Linux Directory Tree
- - directories not folders
+ - directories, not folders
 ```
     $ ls -al
         -a for showing hidden files (important when working with git)
         -l for showing detailed information (especially user and group permissions)
-    $ cd
-    $ cat
+    $ cd /directory/path/
+    $ cat FILENAME
 ```
 
 #### git
@@ -59,6 +60,7 @@
 
 #### vim, nano
  - text editors
+ - nano is already installed on Ubuntu
 ```
     $ sudo apt-get install vim
 ```
@@ -122,6 +124,7 @@ Go to http://localhost/phpinfo.php
     > exit;
 ```
 #### PHPMyAdmin
+ - Web interface for admins into MySQL databases
 ```
     $ sudo apt-get install phpmyadmin
 ```
@@ -140,20 +143,20 @@ Go to http://localhost/phpinfo.php
     $ sudo service apache2 restart
 ```
 
-http://localhost/phpmyadmin
+Go to *http://localhost/phpmyadmin*
  - Enter MySQL root user and password to open interface
     
  **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
 
 #### MySQL Workbench
+ - GUI application for database design
 ```
     $ sudo apt-get install mysql-workbench
 ```
 
 #### Build and deploy test site
 http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
-Principle of Least Privilege
- - http://en.wikipedia.org/wiki/Principle_of_least_privilege
+ - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
 
 ```
     $ sudo gpasswd -a $USER www-data
@@ -161,13 +164,13 @@ Principle of Least Privilege
     $ sudo chmod -R g+w /var/www
 ```
 
-Test access
-
+Test www-data user access
 ```
     $ touch /var/www/test.txt
     $ rm /var/www/test.txt
 ```
 
+##### Clone project into Apache-accessible directory, and create amp-test Apache site configuration
 ```
     $ cd ~
     $ mkdir dev
@@ -180,8 +183,7 @@ Test access
     $ sudo nano sites-available/amp-test.conf
 ```
 
-Change ```DocumentRoot /var/www/html``` to ```/var/www/amp-test```
-
+Change ```DocumentRoot /var/www/html``` to ```DocumentRoot /var/www/amp-test```
 ```
     ^x
     $ sudo a2dissite 000-default
@@ -190,8 +192,10 @@ Change ```DocumentRoot /var/www/html``` to ```/var/www/amp-test```
 
 ```
 
-http://localhost
-    
+Go to *http://localhost* to see if site is up
+
+#### Build test_db database
+
 #### VirtualBox - shutdown
 1. In the VM, initiate OS shutdown
-2. Once completed, on the VM window, do File -> ACPI Shutdown
+2. Once completed, on the VM window, do File -> ACPI Shutdown (if necessary)
