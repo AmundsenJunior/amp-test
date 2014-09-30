@@ -8,7 +8,7 @@
  - PHP (including PHPMyAdmin)
  - Git, Vim/Nano, Bash/Terminal
 
-### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub accounts
+### Installation procedure of VirtualBox, Ubuntu, LAMP, Git
 
 #### Ubuntu Linux
  - popular desktop Linux OS (or server version)
