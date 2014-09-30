@@ -151,7 +151,7 @@ At bottom of file, enter the following:
 http://localhost/phpmyadmin
  - Enter MySQL root user and password to open interface
     
- - Secure PHPMyAdmin web access ([https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04])
+ - To apply secure PHPMyAdmin web access (Use only if you are hosting on an open web server (not just 'localhost')) ([https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04])
 
 #### MySQL Workbench
 ```
