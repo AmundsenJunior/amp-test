@@ -17,6 +17,10 @@
 
 #### Oracle VirtualBox
  - VM manager 
+ - [VirtualBox manual](https://www.virtualbox.org/manual/)
+Shutdown
+1. In the VM, initiate OS shutdown
+2. Once completed, on the VM window, do File -> ACPI Shutdown (if necessary)
 
 #### Install VirtualBox and Ubuntu
 1. Download VirtualBox and Ubuntu prior to training
@@ -154,7 +158,7 @@ Go to *http://localhost/phpmyadmin*
     $ sudo apt-get install mysql-workbench
 ```
 
-#### Build and deploy test site
+### Build and deploy test site
 http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
  - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
 
@@ -196,6 +200,4 @@ Go to *http://localhost* to see if site is up
 
 #### Build test_db database
 
-#### VirtualBox - shutdown
-1. In the VM, initiate OS shutdown
-2. Once completed, on the VM window, do File -> ACPI Shutdown (if necessary)
+
