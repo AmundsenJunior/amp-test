@@ -216,16 +216,20 @@ The other provides DB credentials to the `/db_scripts` directory, within that di
 ?>
 ```
 
-Use 'test_db' as ```dbname```, 'localhost' as ```hostname``` (including the MySQL port number in ```hostname:port```), and provide your root ```username``` and ```password``` in this example project.
-
-You can confirm these credentials by connecting to the database via command line:
+Use 'test_db' as ```dbname```, 'localhost' as ```hostname```, and provide your root ```username``` and ```password``` in this example project. In other projects you will want to create different database users with different permissions. 
+In some cases, the port number will be needed for access, but not always. You can confirm these credentials by connecting to the database via command line, trying with and without ```-P port```:
 ```
-    $ mysql -u username -p -h localhost -P 3306
+    $ mysql -u username -p -h hostname -P port
 ```
 Pass ```-p``` for password without argument for security. Use ```-D dbname``` once the db is created.
 
 #### Build test_db database
-
+1. From the command line, first build the database itself using ```create_db.php```, then create the table within the database using ```create_table.php```:
+```
+    $ php create_db.php
+    $ php create_table.php
+```
+2. Reload http://localhost/ to see whether the MySQL connection error is present on the page.
 
 
 
