@@ -159,28 +159,14 @@ Go to *http://localhost/phpmyadmin*
 ```
 
 ### Build and deploy test site
-http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
- - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
 
-```
-    $ sudo gpasswd -a $USER www-data
-    $ sudo chgrp -R www-data /var/www
-    $ sudo chmod -R g+w /var/www
-```
-
-Test www-data user access
-```
-    $ touch /var/www/test.txt
-    $ rm /var/www/test.txt
-```
-
-##### Clone project into Apache-accessible directory, and create amp-test Apache site configuration
+#### Clone project into Apache-accessible directory, and create amp-test Apache site configuration
 ```
     $ cd ~
     $ mkdir dev
     $ cd dev
-    $ git clone [https://github.com/AmundsenJunior/amp-test.git]
-    $ ln -sT ~/dev/amp-test /var/www/amp-test
+    $ git clone https://github.com/AmundsenJunior/amp-test.git
+    $ sudo ln -sT ~/dev/amp-test /var/www/amp-test
     $ cd /etc/apache2
 
     $ sudo cp sites-available/000-default.conf sites-available/amp-test.conf
@@ -198,6 +184,66 @@ Change ```DocumentRoot /var/www/html``` to ```DocumentRoot /var/www/amp-test```
 
 Go to *http://localhost* to see if site is up
 
+#### Create database credentials scripts
+1. Find the port that MySQL listens on by looking at the MySQL config file:
+```
+    $ cat /etc/mysql/my.cnf
+```
+Or more directly, search the config file for the port listing:
+```
+    $ grep port /etc/mysql/my.cnf
+```
+2. Create ```~/dev/amp-test/cred_int.php``` and ```~/dev/amp-test/db_scripts/cred_ext.php```, as they contain passwords, and are therefore not included in the GitHub repo (via ```.gitignore```):
+One provides DB credentials to the front-end site scripts, currently listed as `cred_int.php` in the project root directory, and formatted as:
+
+```
+<?php
+	DEFINE('DB_USERNAME', 'username');
+	DEFINE('DB_PASSWORD', 'password');
+	DEFINE('DB_HOST', 'hostname');
+	DEFINE('DB_DATABASE', 'dbname');
+?>
+```
+
+The other provides DB credentials to the `/db_scripts` directory, within that directory as `cred_ext.php` for making changes to the db itself, and similarly formatted as:
+
+```
+<?php
+	DEFINE('DB_USERNAME', 'username');
+	DEFINE('DB_PASSWORD', 'password');
+	DEFINE('DB_HOST', 'hostname:port');
+	DEFINE('DB_DATABASE', 'dbname');
+?>
+```
+
+Use 'test_db' as ```dbname```, 'localhost' as ```hostname``` (including the MySQL port number in ```hostname:port```), and provide your root ```username``` and ```password``` in this example project.
+
+You can confirm these credentials by connecting to the database via command line:
+```
+    $ mysql -u username -p -h localhost -P 3306
+```
+Pass ```-p``` for password without argument for security. Use ```-D dbname``` once the db is created.
+
 #### Build test_db database
 
 
+
+
+- - - - 
+
+***NOT COMPLETELY TESTED***
+
+http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
+ - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
+
+```
+    $ sudo gpasswd -a $USER www-data
+    $ sudo chgrp -R www-data /var/www
+    $ sudo chmod -R g+w /var/www
+```
+
+Test www-data user access
+```
+    $ touch /var/www/test.txt
+    $ rm /var/www/test.txt
+```
