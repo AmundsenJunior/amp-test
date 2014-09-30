@@ -36,12 +36,12 @@
 	$sql = "INSERT INTO Apprentices (FirstName, MiddleName, LastName, DayBirth, MonthBirth, YearBirth, Gender, AgeCheck)
 			VALUES ('$firstname', '$middlename', '$lastname', '$daybirth', '$monthbirth', '$yearbirth', '$gender', '$agecheck')";
 
-	if (!mysqli_query($con,$sql)) {
-		die('Error: ' . mysqli_eror($con));
-	}
-	else {
+	if (mysqli_query($con,$sql)) {
 		echo "1 record added<br>";
 		echo "<a href='index.php'>Click back</a>";
+	}
+	else {
+		echo "Error executing: " . $sql . "<br>" . "Error produced: " . mysqli_error($con);
 	}
 
 	mysql_close($con);
