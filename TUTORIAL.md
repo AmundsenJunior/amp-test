@@ -1,5 +1,5 @@
 # LAMP Stack Development Environment Creation
-(*DevOps for A100 Apprentices*)
+(*DevOps for [A100 Apprentices](http://www.indie-soft.com/a100)*)
 
 ## LAMP stack and tools
  - Linux (Ubuntu)
