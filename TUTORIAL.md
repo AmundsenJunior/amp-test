@@ -70,11 +70,11 @@ https://help.ubuntu.com/community/ApacheMySQLPHP
 ```     
 For why you need to use the caret (^): 
  - http://tech.shantanugoel.com/2010/10/23/apt-get-caret.html
- - "root" for mysql root user's password
+ - Set and confirm your MySQL root user's password
 
 #### Apache
  - web server
- - http://127.0.0.1 or http://localhost >> It works!
+ - Go to http://127.0.0.1 or http://localhost >> It works!
  - apache config in /etc/apache2
  - website directory in /var/www
 
@@ -99,16 +99,12 @@ Is "php5.conf" listed? If not,
     $ sudo service apache2 reload
 ```
 
-In /var/www/html,
+Move to the 000-default site's web directory, and create a phpinfo page:
 
 ```
+    cd /var/www/html
     $ ls -al
-```
-
-Are all files with root permission?
-
-```
-    $ sudo nano test.php
+    $ sudo nano phpinfo.php
         <?php
             phpinfo();
         ?>
@@ -116,31 +112,27 @@ Are all files with root permission?
         Yes
 ```
 
-http://localhost/test.php
+Go to http://localhost/phpinfo.php
 
 #### MySQL - confirm installation
 ```
     $ mysql -u root -p
         Enter root user's password
+    > show databases;
     > exit;
 ```
 #### PHPMyAdmin
 ```
     $ sudo apt-get install phpmyadmin
 ```
-
-Install for apache2
-Yes, install with dbconfig-common
-Use root password
-
-Add phpmyadmin to apache's configuration:
-
+1. Install for apache2
+2. Yes, install with dbconfig-common
+3. Use MySQL root username and password
+4. Add phpmyadmin to apache's configuration:
 ```
     $ sudo nano /etc/apache2/apache2.conf
 ```
-
-At bottom of file, enter the following:
-
+5. At bottom of file, enter the following:
 ```
     # Include phpmyadmin configuration:
     Include /etc/phpmyadmin/apache.conf
@@ -151,7 +143,7 @@ At bottom of file, enter the following:
 http://localhost/phpmyadmin
  - Enter MySQL root user and password to open interface
     
- - To apply secure PHPMyAdmin web access (**Use only if you are hosting on an open web server (not just 'localhost')**) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
+ **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
 
 #### MySQL Workbench
 ```
