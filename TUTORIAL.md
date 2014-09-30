@@ -136,9 +136,8 @@ Go to http://localhost/phpinfo.php
 2. Yes, install with dbconfig-common
 3. Use MySQL root username and password
 4. Add phpmyadmin to apache's configuration:
-```
-    $ sudo nano /etc/apache2/apache2.conf
-```
+
+  ```$ sudo nano /etc/apache2/apache2.conf```
 5. At bottom of file, enter the following:
 ```
     # Include phpmyadmin configuration:
@@ -185,16 +184,16 @@ Change ```DocumentRoot /var/www/html``` to ```DocumentRoot /var/www/amp-test```
 Go to *http://localhost* to see if site is up
 
 #### Create database credentials scripts
-1. Find the port that MySQL listens on by looking at the MySQL config file:
+- Find the port that MySQL listens on by looking at the MySQL config file:
 ```
     $ cat /etc/mysql/my.cnf
 ```
-Or more directly, search the config file for the port listing:
+   Or more directly, search the config file for the port listing:
 ```
     $ grep port /etc/mysql/my.cnf
 ```
-2. Create ```~/dev/amp-test/cred_int.php``` and ```~/dev/amp-test/db_scripts/cred_ext.php```, as they contain passwords, and are therefore not included in the GitHub repo (via ```.gitignore```):
-One provides DB credentials to the front-end site scripts, currently listed as `cred_int.php` in the project root directory, and formatted as:
+
+ - Create ```~/dev/amp-test/cred_int.php``` and ```~/dev/amp-test/db_scripts/cred_ext.php```, as they contain passwords, and are therefore not included in the GitHub repo (via ```.gitignore```). One provides DB credentials to the front-end site scripts, currently listed as `cred_int.php` in the project root directory, and formatted as:
 
 ```
 <?php
@@ -224,12 +223,12 @@ In some cases, the port number will be needed for access, but not always. You ca
 Pass ```-p``` for password without argument for security. Use ```-D dbname``` once the db is created.
 
 #### Build test_db database
-1. From the command line, first build the database itself using ```create_db.php```, then create the table within the database using ```create_table.php```:
+ - From the command line, first build the database itself using ```create_db.php```, then create the table within the database using ```create_table.php```:
 ```
     $ php create_db.php
     $ php create_table.php
 ```
-2. Reload http://localhost/ to see whether the MySQL connection error is present on the page.
+ - Reload http://localhost/ to see whether the MySQL connection error is present on the page.
 
 
 
