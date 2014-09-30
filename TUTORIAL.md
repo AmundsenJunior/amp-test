@@ -8,26 +8,24 @@
  - Git and GitHub
 
 ### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub accounts
- - Download VirtualBox and Ubuntu prior to training
-[https://www.virtualbox.org/wiki/Downloads]
-[http://www.ubuntu.com/download/desktop]
- - Go through full VirtualBox installation on Mac or Windows, accepting all settings, including networking (with temporary interruption of Internet connectivity during installation)
- - Create New VirtualBox VM, with at least 512 MB memory, and dynamically allocated 8GB disk space, all other options at default
- - Once created, Start the VM, and select the downloaded ISO Ubuntu disk image for starting installation
- - Erase disk (this refers to your VirtualBox hardisk that you just created) and install Ubuntu
- - Accept most settings, create a user name and password, download updates during installation
- - Upon restart, you may need to select Reset in the VirtualBox window (Under File -> Reset) once the Ubuntu screen reaches “Stopping early crypto disks… [OK]”
- - Once it’s restarted, find the Software Updater icon on the Launcher bar, and click to be prompted for Restart (this is installing the updates downloaded earlier.)
-
- - Install VirtualBox Guest Additions
-    Under the VirtualBox window options, go to "Devices -> Insert Guest Additions CD image”
-    Enter your user password to continue
+1. Download VirtualBox and Ubuntu prior to training
+   - [https://www.virtualbox.org/wiki/Downloads]
+   - [http://www.ubuntu.com/download/desktop]
+2. Go through full VirtualBox installation on Mac or Windows, accepting all settings, including networking (with temporary interruption of Internet connectivity during installation)
+3. Create New VirtualBox VM, with at least 512 MB memory, and dynamically allocated 8GB disk space, all other options at default
+4. Once created, Start the VM, and select the downloaded ISO Ubuntu disk image for starting installation
+5. Erase disk (this refers to your VirtualBox hardisk that you just created) and install Ubuntu
+6. Accept most settings, create a user name and password, download updates during installation
+7. Upon restart, you may need to select Reset in the VirtualBox window (Under File -> Reset) once the Ubuntu screen reaches "Stopping early crypto disks… [OK]"
+8. Once it’s restarted, find the Software Updater icon on the Launcher bar, and click to be prompted for Restart (this is installing the updates downloaded earlier.)
+9. Install VirtualBox Guest Additions
+   1. Under the VirtualBox window options, go to "Devices -> Insert Guest Additions CD image”
+   2. Enter your user password to continue
 
 #### Ubuntu Linux
  - popular desktop Linux OS (or server version)
  - Install a 32-bit desktop version if your computer has less than 4GB physical memory
  - Optionally install a lightweight or other desktop environment (default is Unity): [http://askubuntu.com/questions/65083/what-kinds-of-desktop-environments-and-shells-are-available]
-
 
 #### Oracle VirtualBox
  - VM manager 
