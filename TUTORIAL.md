@@ -148,8 +148,6 @@ Go to http://localhost/phpinfo.php
 
 Go to *http://localhost/phpmyadmin*
  - Enter MySQL root user and password to open interface
-    
- **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
 
 #### MySQL Workbench
  - GUI application for database design
@@ -181,7 +179,7 @@ Change ```DocumentRoot /var/www/html``` to ```DocumentRoot /var/www/amp-test```
 
 ```
 
-Go to *http://localhost* to see if site is up
+Go to *http://localhost* to see if the site is up. You should see the layout of the form, but with a MySQL database connection error present on the page, as no database is yet created when ```include select.php``` makes a SELECT query to the database connection to display data. We will rectify this error with our next step!
 
 #### Create database credentials scripts
 - Find the port that MySQL listens on by looking at the MySQL config file:
@@ -228,14 +226,20 @@ Pass ```-p``` for password without argument for security. Use ```-D dbname``` on
     $ php create_db.php
     $ php create_table.php
 ```
- - Reload http://localhost/ to see whether the MySQL connection error is present on the page.
+ - Reload http://localhost/ to see whether the MySQL connection error is present on the page. You should now be able to enter and submit a set of form data. Upon clicking 'Submit', the ```insert.php``` script is called, and will return an error message on the page that loads, as it is trying to insert data into columns that don't exist.
+ - To correct this last error, we will alter the 'Apprentices' table in our database to add these missing columns. From the command line, run ```db_scripts/alter_table.php``` to add new columns to the table:
+ - Once that script completes, test again submitting data to the form, and you should see it populate on ```index.php``` as well as in the database, via PHPMyAdmin.
 
 
 
 - - - - 
 
-***NOT COMPLETELY TESTED***
+### NOT COMPLETELY TESTED
 
+#### PHPMyAdmin Web Security
+ **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
+
+#### Linux Permissions for web projects 
 http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
  - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
 
