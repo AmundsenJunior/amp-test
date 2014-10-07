@@ -13,13 +13,18 @@
 
 
 	// Create table
-	$sql = "ALTER TABLE Apprentices
-	ADD COLUMN AgeCheck VARCHAR(3)";
-	if (mysqli_query($con, $sql)) {
-		echo "Table Apprentices in test_db updated successfully.\n";
-	}
-	else {
-		echo "Error creating database: " . mysqli_error($con);
+	$sql = array(
+		"ALTER TABLE Apprentices ADD COLUMN Gender VARCHAR(6)",
+		"ALTER TABLE Apprentices ADD COLUMN AgeCheck VARCHAR(3)"
+	);
+
+	foreach ($sql as $stmt) {
+		if (mysqli_query($con, $stmt)) {
+			echo "Table Apprentices in test_db updated successfully.\n";
+		}
+		else {
+			echo "Error updating database: " . mysqli_error($con);
+		}
 	}
 
 	// Close connection
