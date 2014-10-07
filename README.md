@@ -14,8 +14,7 @@ One provides DB credentials to the site, currently listed as `cred_int.php` in t
 <?php
 	DEFINE('DB_USERNAME', 'username');
 	DEFINE('DB_PASSWORD', 'password');
-	DEFINE('DB_HOST', 'hostname');
-	DEFINE('DB_DATABASE', 'dbname');
+	DEFINE('DSN', 'mysql:host=*hostname*;dbname=*dbname*');
 ?>
 ```
 
