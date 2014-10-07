@@ -1,5 +1,5 @@
 # LAMP Stack Development Environment Creation
-(*DevOps for A100 Apprentices*)
+(*DevOps for [A100 Apprentices](http://www.indie-soft.com/a100)*)
 
 ## LAMP stack and tools
  - Linux (Ubuntu)
@@ -8,7 +8,7 @@
  - PHP (including PHPMyAdmin)
  - Git, Vim/Nano, Bash/Terminal
 
-### Installation procedure of VirtualBox, Ubuntu, LAMP, GitHub accounts
+### Installation procedure of VirtualBox, Ubuntu, LAMP, Git
 
 #### Ubuntu Linux
  - popular desktop Linux OS (or server version)
@@ -136,9 +136,8 @@ Go to http://localhost/phpinfo.php
 2. Yes, install with dbconfig-common
 3. Use MySQL root username and password
 4. Add phpmyadmin to apache's configuration:
-```
-    $ sudo nano /etc/apache2/apache2.conf
-```
+
+  ```$ sudo nano /etc/apache2/apache2.conf```
 5. At bottom of file, enter the following:
 ```
     # Include phpmyadmin configuration:
@@ -149,8 +148,6 @@ Go to http://localhost/phpinfo.php
 
 Go to *http://localhost/phpmyadmin*
  - Enter MySQL root user and password to open interface
-    
- **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
 
 #### MySQL Workbench
  - GUI application for database design
@@ -159,28 +156,14 @@ Go to *http://localhost/phpmyadmin*
 ```
 
 ### Build and deploy test site
-http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
- - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
 
-```
-    $ sudo gpasswd -a $USER www-data
-    $ sudo chgrp -R www-data /var/www
-    $ sudo chmod -R g+w /var/www
-```
-
-Test www-data user access
-```
-    $ touch /var/www/test.txt
-    $ rm /var/www/test.txt
-```
-
-##### Clone project into Apache-accessible directory, and create amp-test Apache site configuration
+#### Clone project into Apache-accessible directory, and create amp-test Apache site configuration
 ```
     $ cd ~
     $ mkdir dev
     $ cd dev
-    $ git clone [https://github.com/AmundsenJunior/amp-test.git]
-    $ ln -sT ~/dev/amp-test /var/www/amp-test
+    $ git clone https://github.com/AmundsenJunior/amp-test.git
+    $ sudo ln -sT ~/dev/amp-test /var/www/amp-test
     $ cd /etc/apache2
 
     $ sudo cp sites-available/000-default.conf sites-available/amp-test.conf
@@ -196,8 +179,78 @@ Change ```DocumentRoot /var/www/html``` to ```DocumentRoot /var/www/amp-test```
 
 ```
 
-Go to *http://localhost* to see if site is up
+Go to *http://localhost* to see if the site is up. You should see the layout of the form, but with a MySQL database connection error present on the page, as no database is yet created when ```include select.php``` makes a SELECT query to the database connection to display data. We will rectify this error with our next step!
+
+#### Create database credentials scripts
+- Find the port that MySQL listens on by looking at the MySQL config file:
+```
+    $ cat /etc/mysql/my.cnf
+```
+   Or more directly, search the config file for the port listing:
+```
+    $ grep port /etc/mysql/my.cnf
+```
+
+ - Create ```~/dev/amp-test/cred_int.php``` and ```~/dev/amp-test/db_scripts/cred_ext.php```, as they contain passwords, and are therefore not included in the GitHub repo (via ```.gitignore```). One provides DB credentials to the front-end site scripts, currently listed as `cred_int.php` in the project root directory, and formatted as:
+
+```
+<?php
+	DEFINE('DB_USERNAME', 'username');
+	DEFINE('DB_PASSWORD', 'password');
+	DEFINE('DB_HOST', 'hostname');
+	DEFINE('DB_DATABASE', 'dbname');
+?>
+```
+
+The other provides DB credentials to the `/db_scripts` directory, within that directory as `cred_ext.php` for making changes to the db itself, and similarly formatted as:
+
+```
+<?php
+	DEFINE('DB_USERNAME', 'username');
+	DEFINE('DB_PASSWORD', 'password');
+	DEFINE('DB_HOST', 'hostname:port');
+	DEFINE('DB_DATABASE', 'dbname');
+?>
+```
+
+Use 'test_db' as ```dbname```, 'localhost' as ```hostname```, and provide your root ```username``` and ```password``` in this example project. In other projects you will want to create different database users with different permissions. 
+In some cases, the port number will be needed for access, but not always. You can confirm these credentials by connecting to the database via command line, trying with and without ```-P port```:
+```
+    $ mysql -u username -p -h hostname -P port
+```
+Pass ```-p``` for password without argument for security. Use ```-D dbname``` once the db is created.
 
 #### Build test_db database
+ - From the command line, first build the database itself using ```create_db.php```, then create the table within the database using ```create_table.php```:
+```
+    $ php create_db.php
+    $ php create_table.php
+```
+ - Reload http://localhost/ to see whether the MySQL connection error is present on the page. You should now be able to enter and submit a set of form data. Upon clicking 'Submit', the ```insert.php``` script is called, and will return an error message on the page that loads, as it is trying to insert data into columns that don't exist.
+ - To correct this last error, we will alter the 'Apprentices' table in our database to add these missing columns. From the command line, run ```db_scripts/alter_table.php``` to add new columns to the table:
+ - Once that script completes, test again submitting data to the form, and you should see it populate on ```index.php``` as well as in the database, via PHPMyAdmin.
 
 
+
+- - - - 
+
+### NOT COMPLETELY TESTED
+
+#### PHPMyAdmin Web Security
+ **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
+
+#### Linux Permissions for web projects 
+http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
+ - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
+
+```
+    $ sudo gpasswd -a $USER www-data
+    $ sudo chgrp -R www-data /var/www
+    $ sudo chmod -R g+w /var/www
+```
+
+Test www-data user access
+```
+    $ touch /var/www/test.txt
+    $ rm /var/www/test.txt
+```
