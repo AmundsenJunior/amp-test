@@ -1,33 +1,35 @@
 <?php
 
-	// create_table.php - Script to create new table in existing MySQL database
+    // create_table.php - Script to create new table in existing MySQL database
 
-	include "cred_ext.php";
+    include "cred_ext.php";
 
+    try {
 	//Create connection
-	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-	// Check connection
-	if (mysqli_connect_errno()) {
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-
+	$dbh = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
 
 	// Create table
-	$sql = array(
+
+	$stmts = array(
 		"ALTER TABLE Apprentices ADD COLUMN Gender VARCHAR(6)",
 		"ALTER TABLE Apprentices ADD COLUMN AgeCheck VARCHAR(3)"
 	);
 
-	foreach ($sql as $stmt) {
-		if (mysqli_query($con, $stmt)) {
-			echo "Table Apprentices in test_db updated successfully.\n";
-		}
-		else {
-			echo "Error updating database: " . mysqli_error($con);
-		}
+	foreach ($stmts as $stmt) {
+            $stmt = $dbh->prepare($stmt);
+            $stmt->execute();
+
+            echo "Table Apprentices in test_db updated successfully.\n";
 	}
 
 	// Close connection
-	mysqli_close($con);
+        $stmt->closeCursor();
+        $stmt = null;
+        $dbh = null;
+    }
+    catch (PDOException $e) {
+        print "Error: " . $e->getMessage() . "<br/>";
+        die();
+    }
 
 ?>
