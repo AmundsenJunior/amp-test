@@ -35,6 +35,11 @@
 
 	echo "1 record added<br>";
 	echo "<a href='index.php'>Click back</a>";
+
+        //Close connection
+        $stmt->closeCursor();
+        $stmt = null;
+        $dbh = null;
     }
     catch (PDOException $e) {
         print "Error: " . $e->getMessage() . "<br/>";

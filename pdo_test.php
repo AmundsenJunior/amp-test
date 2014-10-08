@@ -30,6 +30,11 @@
         foreach($rows as $row) {
             print_r($row);
         }
+
+        // Close connection
+        $stmt->closeCursor();
+        $stmt = null;
+        $dbh = null;
     }
     catch (PDOException $e) {
         print "Error: " . $e->getMessage() . "<br/>";
