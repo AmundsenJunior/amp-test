@@ -1,19 +1,15 @@
 <?php
 
-	// create_table.php - Script to create new table in existing MySQL database
+    // create_table.php - Script to create new table in existing MySQL database
 
-	include "cred_ext.php";
+    include "cred_ext.php";
 
+    try {
 	//Create connection
-	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-	// Check connection
-	if (mysqli_connect_errno()) {
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
+	$dbh = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
 
-
-	// Create table
-	$sql = "CREATE TABLE Apprentices(
+       	// Create table
+	$stmt = $dbh->prepare('CREATE TABLE Apprentices(
 		PID INT NOT NULL AUTO_INCREMENT,
 		PRIMARY KEY(PID),
 		FirstName CHAR(30),
@@ -22,17 +18,19 @@
 		DayBirth TINYINT(2),
 		MonthBirth CHAR(15),
 		YearBirth TINYINT(4)
-		)";
-	if (mysqli_query($con, $sql)) {
-		echo "Table Apprentices in test_db created successfully.\n";
-	}
-	else {
-		echo "Error creating database: " . mysqli_error($con);
-	}
+		)');
+        $stmt->execute();
 
-
+	echo "Table Apprentices in test_db created successfully.\n";
 
 	// Close connection
-	mysqli_close($con);
+        $stmt->closeCursor();
+        $stmt = null;
+        $dbh = null;
+    }
+    catch (PDOException $e) {
+        print "Error: " . $e->getMessage() . "<br/>";
+        die();
+    }
 
 ?>
