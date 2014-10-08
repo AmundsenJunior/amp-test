@@ -2,7 +2,7 @@ This project is an *AMP stack-based site, and POC for basic PHP-MySQL form funct
 
 [TUTORIAL.md](TUTORIAL.md) provides the step-by-step procedure for setting this project up as a full LAMP stack-based site.
 
-Use the `db_scripts/` files to create the MySQL database and tables within, along with altering table structure. (The `alter_table.php` file has been used twice already to add new columns to the Apprentices table.)
+Use the `db_scripts/` files to create the MySQL database and tables within, along with altering table structure.
 
 
 ### .gitignore
@@ -14,8 +14,7 @@ One provides DB credentials to the site, currently listed as `cred_int.php` in t
 <?php
 	DEFINE('DB_USERNAME', 'username');
 	DEFINE('DB_PASSWORD', 'password');
-	DEFINE('DB_HOST', 'hostname');
-	DEFINE('DB_DATABASE', 'dbname');
+	DEFINE('DSN', 'mysql:host=*hostname*;dbname=*dbname*');
 ?>
 ```
 
@@ -25,8 +24,7 @@ The other provides DB credentials to the `/db_scripts` directory, within that di
 <?php
 	DEFINE('DB_USERNAME', 'username');
 	DEFINE('DB_USERNAME', 'password');
-	DEFINE('DB_HOST', 'hostname:port');
-	DEFINE('DB_DATABASE', 'dbname');
+	DEFINE('DSN', 'mysql:host=*hostname*;dbname=*dbname*');
 ?>
 ```
  

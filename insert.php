@@ -1,57 +1,49 @@
 <?php
 
-	// insert.php Script to execute from index.php to write to a MySQL database table
+    // insert.php Script to execute from index.php to write to a MySQL database table
 
-	include "cred_int.php";
+    include "cred_int.php";
 
-	//Create connection
-	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-	// Check connection
-	if (mysqli_connect_errno()) {
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-	else {
-		echo "Successful db connection";
-	}
+    // Assign POST form values to PHP insert variables
+    $firstName = $_POST['fname'];
+    $middleName = $_POST['mname'];
+    $lastName = $_POST['lname'];
+    $dayBirth = $_POST['dbirth'];
+    $monthBirth = $_POST['mbirth'];
+    $yearBirth = $_POST['ybirth'];
+    $gender = $_POST['gender'];
+    $ageCheck = $_POST['age'];
 
-	/*
-		HTML form variable 		MySQL test_db.Apprentices field 	PHP variable
-		fname 					FirstName 							firstname
-		mname 					MiddleName 							middlename
-		lname 					LastName 							lastname
-		dbirth 					DayBirth 							daybirth
-		mbirth 					MonthBirth 							monthbirth
-		ybirth 					YearBirth 							yearbirth
-		gender 					Gender 								gender
-		age 					AgeCheck 							agecheck
-	*/
+    try {
+        //Create connection
+	$dbh = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
 
-	// Assign POST form values to PHP insert variables
-	$firstname = mysqli_real_escape_string($con, $_POST['fname']);
-	$middlename = mysqli_real_escape_string($con, $_POST['mname']);
-	$lastname = mysqli_real_escape_string($con, $_POST['lname']);
-	$daybirth = mysqli_real_escape_string($con, $_POST['dbirth']);
-	$monthbirth = mysqli_real_escape_string($con, $_POST['mbirth']);
-	$yearbirth = mysqli_real_escape_string($con, $_POST['ybirth']);
-	$gender = mysqli_real_escape_string($con, $_POST['gender']);
-	$agecheck = mysqli_real_escape_string($con, $_POST['age']);
+        $stmt = $dbh->prepare('INSERT INTO Apprentices 
+            (FirstName, MiddleName, LastName, DayBirth, MonthBirth, YearBirth, Gender, AgeCheck)
+	    VALUES (:firstname, :middlename, :lastname, 
+            :daybirth, :monthbirth, :yearbirth, :gender, :agecheck)');
+        $stmt->bindParam(':firstname', $firstName, PDO::PARAM_STR);
+        $stmt->bindParam(':middlename', $middleName, PDO::PARAM_STR);
+        $stmt->bindParam(':lastname', $lastName, PDO::PARAM_STR);
+        $stmt->bindParam(':daybirth', $dayBirth, PDO::PARAM_INT);
+        $stmt->bindParam(':monthbirth', $monthBirth, PDO::PARAM_STR);
+        $stmt->bindParam(':yearbirth', $yearBirth, PDO::PARAM_INT);
+        $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+        $stmt->bindParam(':agecheck', $ageCheck, PDO::PARAM_STR);
 
-        echo $firstname, $middlename, $lastname;
-        echo $daybirth, $monthbirth, $yearbirth;
-        echo $gender, $agecheck;
+        $stmt->execute();
 
-	$sql = "INSERT INTO Apprentices (FirstName, MiddleName, LastName, DayBirth, MonthBirth, YearBirth, Gender, AgeCheck)
-			VALUES ('$firstname', '$middlename', '$lastname', '$daybirth', '$monthbirth', '$yearbirth', '$gender', '$agecheck')";
+	echo "1 record added<br>";
+	echo "<a href='index.php'>Click back</a>";
 
-	if (mysqli_query($con,$sql)) {
-		echo "1 record added<br>";
-		echo "<a href='index.php'>Click back</a>";
-	}
-	else {
-		echo "Error executing: " . $sql . "<br>"
-		. "Error produced: " . mysqli_error($con);
-	}
-
-	mysql_close($con);
+        //Close connection
+        $stmt->closeCursor();
+        $stmt = null;
+        $dbh = null;
+    }
+    catch (PDOException $e) {
+        print "Error: " . $e->getMessage() . "<br/>";
+        die();
+    }
 
 ?>
