@@ -118,7 +118,15 @@ Move to the 000-default site's web directory, and create a phpinfo page:
         Yes
 ```
 
-Go to http://localhost/phpinfo.php
+Go to http://localhost/phpinfo.php, and search for *PDO*.
+If not enabled, check ```/etc/php5/mods-available``` for ```pdo``` and ```pdo_mysql``` modules.
+Enable with the following commands:
+
+```
+    $ sudo php5enmod pdo
+    $ sudo php5enmod pdo_mysql
+    $ sudo service apache2 restart
+```
 
 #### MySQL - confirm installation
 ```
