@@ -6,17 +6,9 @@
 
 	try {
 		//Create connection
-		 $con = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
-		//$con = new PDO('mysql:host=localhost;dbname=test_db', root, root);
-		//echo $con;
-		// $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-
-		$tableName = "Apprentices";
-
-		$query = $con->prepare("SELECT * FROM :tableName");
-		$query->bindParam(':tableName', $tableName);
-
-		echo $query;
+         	$dbh = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
+		
+		$stmt = $dbh->prepare("SELECT * FROM Apprentices");
 		
 		echo "<table border='1'>
 		<tr>
@@ -30,9 +22,11 @@
 		<th>18 or Older</th>
 		</tr>";
 
-		$query->execute();
+		$stmt->execute();
 
-		foreach($con->$query as $row) {
+		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach($rows as $row) {
 			echo "<tr>";			
 			echo "<td>" . $row['FirstName'] . "</td>";
 			echo "<td>" . $row['MiddleName'] . "</td>";
@@ -47,9 +41,9 @@
 
 		echo "</table>";
 
-		$query->closeCursor();
-		$query = null;
-		$con = null;
+		$stmt->closeCursor();
+		$stmt = null;
+		$dbh = null;
 	}
 
 	catch (PDOException $e) {
