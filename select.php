@@ -6,7 +6,9 @@
 
 	try {
 		//Create connection
-		$con = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
+		 $con = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
+		//$con = new PDO('mysql:host=localhost;dbname=test_db', root, root);
+		//echo $con;
 		// $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 		$tableName = "Apprentices";
@@ -44,8 +46,6 @@
 		}
 
 		echo "</table>";
-
-		}
 
 		$query->closeCursor();
 		$query = null;
