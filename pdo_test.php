@@ -5,21 +5,25 @@
         $dbh = new PDO(DSN, DB_USERNAME, DB_PASSWORD);
         print "Connection successful.";
 
-        $tableName = 'Apprentices';
+        $firstName = 'Scott';
 
 //        $stmt = $dbh->prepare('SELECT * FROM :tablename');
-//        $stmt->bindValue(':tablename', $tableName, PDO::PARAM_STR);
+//        $stmt->bindParam(':tablename', $tableName, PDO::PARAM_STR);
+
+        $stmt = $dbh->prepare('SELECT * FROM Apprentices WHERE FirstName=:firstname');
+        $stmt->bindParam(':firstname', $firstName, PDO::PARAM_STR);
 
 //        $stmt = $dbh->prepare('SELECT * FROM ?');
 //        $stmt->bindValue(1, $tableName, PDO::PARAM_STR);
 
-        $stmt = $dbh->query('SELECT * FROM Apprentices');
+//        $stmt = $dbh->query('SELECT * FROM Apprentices');
 
 //        $stmt = $dbh->query('SELECT * FROM $tableName');
 
-        print_r($stmt->queryString);
 
         $stmt->execute();
+
+        print_r($stmt->queryString);
 
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
