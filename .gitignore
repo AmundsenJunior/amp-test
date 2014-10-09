@@ -2,3 +2,5 @@
 cred_int.php
 db_scripts/cred_ext.php
 
+.vagrant
+
