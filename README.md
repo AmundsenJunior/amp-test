@@ -4,7 +4,11 @@ This project is an *AMP stack-based site, and POC for basic PHP-MySQL form funct
 
 Use the `db_scripts/` files to create the MySQL database and tables within, along with altering table structure.
 
+### Vagrant Deployment with ```Vagrantfile``` and ```bootstrap.sh```
+Set up your development environment with VirtualBox and Vagrant using the procedure outlined in [DEPLOY.md](DEPLOY.md).
 
+Before deploying with ```$ vagrant up```, be sure to change the Variables in [bootstrap.sh](bootstrap.sh), to taste.
+ 
 ### .gitignore
 ***(This includes the two cred_*.php files used.)***
  
