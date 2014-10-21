@@ -245,19 +245,3 @@ Pass ```-p``` for password without argument for security. Use ```-D dbname``` on
 
 #### PHPMyAdmin Web Security
  **OPTIONAL** To apply secure PHPMyAdmin web access (*Use only if you are hosting on an open web server (not just 'localhost')*) (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04)
-
-#### Linux Permissions for web projects 
-http://askubuntu.com/questions/46331/how-to-avoid-using-sudo-when-working-in-var-www
- - [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
-
-```
-    $ sudo gpasswd -a $USER www-data
-    $ sudo chgrp -R www-data /var/www
-    $ sudo chmod -R g+w /var/www
-```
-
-Test www-data user access
-```
-    $ touch /var/www/test.txt
-    $ rm /var/www/test.txt
-```
